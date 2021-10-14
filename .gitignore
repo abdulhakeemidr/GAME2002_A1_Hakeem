@@ -9,16 +9,17 @@
 *.user
 *.userosscache
 *.sln.docstates
+*resources.cfg
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
 # Build results
-[Dd]ebug/
+GAME2002_A1_Hakeem_Jaan/[Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
-x64/
+GAME2002_A1_Hakeem_Jaan/x64/
 x86/
 bld/
 [Bb]in/
