@@ -15,10 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="week2-5-mesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="week2-6-spotlight.cpp">
+    <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
