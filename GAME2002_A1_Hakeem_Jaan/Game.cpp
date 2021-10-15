@@ -2,10 +2,6 @@
 #include "ObjectCreator.h"
 #include "GameFrameListener.h"
 
-using namespace Ogre;
-using namespace OgreBites;
-
-
 
 Game::Game()
     : ApplicationContext("GAME2002 A1 Abdulhakeem Idris")
@@ -45,7 +41,6 @@ void Game::createTrayUI()
     //you must add this in order to add a tray
     scnMgr->addRenderQueueListener(mOverlaySystem);
 
-    //Once you have your tray manager, make sure you relay input events to it.
     addInputListener(mTrayMgr);
 
     mInfoLabel = mTrayMgr->createLabel(TL_TOP, "TInfo", "Assignment 1", 250);
@@ -88,40 +83,41 @@ void Game::createScene()
     //! [newlight]
 
 
-
     //! [lightpos]
     lightNode->setPosition(0, 4, 10);
     //! [lightpos]
 
 
-
     // Ball Object
-    Ogre::ManualObject* BallObject = NULL;
-    BallObject = scnMgr->createManualObject("Triangle2");
-    BallObject->setDynamic(false);
-    BallObject->begin("FlatVertexColour",
-        Ogre::RenderOperation::OT_TRIANGLE_LIST);
-    BallObject->position(0, 0, 0); // Bottom left [Index 0]
-    BallObject->colour(1, 0, 0);
-    BallObject->position(1, 0, 0); // bottom right [Index 1]
-    BallObject->colour(0, 1, 0);
-    BallObject->position(1, 1, 0); // top right [Index 2]
-    BallObject->colour(0, 0, 1);
-    BallObject->position(0, 1, 0); // top left [Index 3]
-    BallObject->colour(0, 1, 0.5);
-    BallObject->triangle(0, 1, 2);
-    BallObject->triangle(0, 2, 3);
+    //Ogre::ManualObject* BallObject = NULL;
+    //BallObject = scnMgr->createManualObject("BallObj");
+    //BallObject->setDynamic(false);
+    //BallObject->begin("FlatVertexColour",
+    //    Ogre::RenderOperation::OT_TRIANGLE_LIST);
+    //BallObject->position(0, 0, 0); // Bottom left [Index 0]
+    //BallObject->colour(1, 0, 0);
+    //BallObject->position(1, 0, 0); // bottom right [Index 1]
+    //BallObject->colour(0, 1, 0);
+    //BallObject->position(1, 1, 0); // top right [Index 2]
+    //BallObject->colour(0, 0, 1);
+    //BallObject->position(0, 1, 0); // top left [Index 3]
+    //BallObject->colour(0, 1, 0.5);
+    //BallObject->triangle(0, 1, 2);
+    //BallObject->triangle(0, 2, 3);
+    //BallObject->end();
+    //BallNodePointer = scnMgr->getRootSceneNode()->
+    //    createChildSceneNode("Ball");
+    //BallNodePointer->attachObject(BallObject);
 
-    BallObject->end();
-
+    // Ball Object using object creator
+    ObjectCreator WhiteSquare("BallObj", 1, 1);
     BallNodePointer = scnMgr->getRootSceneNode()->
         createChildSceneNode("Ball");
-    BallNodePointer->attachObject(BallObject);
-
-
+    BallNodePointer->attachObject(WhiteSquare.getObject());
+    BallNodePointer->setPosition(Ogre::Vector3(0, 0, 0));
 
     Ogre::ManualObject* ManualObject = NULL;
-    ManualObject = scnMgr->createManualObject("Triangle");
+    ManualObject = scnMgr->createManualObject("PlayerObj");
     ManualObject->setDynamic(false);
     ManualObject->begin("FlatVertexColour",
         Ogre::RenderOperation::OT_TRIANGLE_LIST);
@@ -144,11 +140,7 @@ void Game::createScene()
     PlayerNodePointer->attachObject(ManualObject);
     PlayerNodePointer->setPosition(Ogre::Vector3(0, -5, 0));
 
-    ObjectCreator WhiteSquare("Square", 5, 1);
-    PlayerNodePointer = scnMgr->getRootSceneNode()->
-        createChildSceneNode("Square");
-    PlayerNodePointer->attachObject(WhiteSquare.getObject());
-    PlayerNodePointer->setPosition(Ogre::Vector3(0, 0, 0));
+    
 
     PlayerNodePointer = scnMgr->getSceneNode("Player");
     // -- tutorial section end --

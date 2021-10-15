@@ -1,11 +1,13 @@
 #pragma once
 #include "Ogre.h"
 #include "Game.h"
+#include <OgreApplicationContextBase.h>
 
 class ExampleFrameListener : public Ogre::FrameListener
 {
 private:
     Ogre::SceneNode* _node;
+    Ogre::Vector3 ballTranslate = Ogre::Vector3(1, 0, 0);
 public:
 
     ExampleFrameListener(Ogre::SceneNode* node)
@@ -22,7 +24,17 @@ public:
         }
         if (_node->getName() == "Ball")
         {
-            _node->translate(Ogre::Vector3(1, 0, 0) * evt.timeSinceLastFrame);
+            
+            _node->translate(ballTranslate * evt.timeSinceLastFrame);
+            float Height = Game::Instance().getRenderWindow()->getHeight() / 2;
+            float Width = Game::Instance().getRenderWindow()->getWidth() / 2;
+            //std::cout << Game::Instance().getRenderWindow()->getWidth() << std::endl;
+            std::cout << _node->getPosition().x << std::endl;
+
+            if (_node->getPosition().x > Width)
+            {
+                ballTranslate = ballTranslate * -1;
+            }
         }
 
         return true;
