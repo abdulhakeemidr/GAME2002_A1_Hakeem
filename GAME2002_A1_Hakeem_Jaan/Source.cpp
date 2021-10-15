@@ -6,6 +6,7 @@
 #include "OgreApplicationContext.h"
 #include "OgreInput.h"
 #include "OgreRTShaderSystem.h"
+#include "OgreTrays.h"
 #include <iostream>
 
 using namespace Ogre;
@@ -49,12 +50,21 @@ public:
     void createCamera();
     bool keyPressed(const KeyboardEvent& evt);
     void createFrameListener();
+    void createTrayUI();
     Ogre::SceneNode* TriangleNode;
+    OgreBites::TrayListener myTrayListener;
+    OgreBites::Label* mInfoLabel;
+
+    OgreBites::Label* mScoreLabel;
+    OgreBites::Label* mScore;
+
+    OgreBites::Label* mLivesLabel;
+    OgreBites::Label* mLives;
 };
 
 
 OgreTutorial::OgreTutorial()
-    : ApplicationContext("week4-2-ManualObjectInteractive")
+    : ApplicationContext("GAME2002 A1 Abdulhakeem Idris")
 {
 }
 
@@ -74,7 +84,26 @@ void OgreTutorial::setup()
     shadergen->addSceneManager(scnMgr);
     createScene();
     createCamera();
+    createTrayUI();
     createFrameListener();
+}
+
+void OgreTutorial::createTrayUI()
+{
+    OgreBites::TrayManager* mTrayMgr = new OgreBites::TrayManager("InterfaceName", getRenderWindow());
+    //you must add this in order to add a tray
+    scnMgr->addRenderQueueListener(mOverlaySystem);
+
+    //Once you have your tray manager, make sure you relay input events to it.
+    addInputListener(mTrayMgr);
+
+    mInfoLabel = mTrayMgr->createLabel(TL_TOP, "TInfo", "Assignment 1", 200);
+
+    mScoreLabel = mTrayMgr->createLabel(TL_TOPLEFT, "Score", "Score:", 150);
+    mScore = mTrayMgr->createLabel(TL_TOPLEFT, "score", "0", 150);
+
+    mLivesLabel = mTrayMgr->createLabel(TL_TOPLEFT, "Lives", "Lives:", 150);
+    mLives = mTrayMgr->createLabel(TL_TOPLEFT, "lives", "5", 150);
 }
 
 void OgreTutorial::createScene()
@@ -114,24 +143,8 @@ void OgreTutorial::createScene()
     //! [lightpos]
 
 
-    Ogre::ManualObject* ManualObject = NULL;
-    ManualObject = scnMgr->createManualObject("Triangle");
-    ManualObject->setDynamic(false);
-    ManualObject->begin("FlatVertexColour",
-        Ogre::RenderOperation::OT_TRIANGLE_LIST);
-    ManualObject->position(0, 0, 0); // Bottom left [Index 0]
-    ManualObject->colour(1, 0, 0);
-    ManualObject->position(3, 0, 0); // bottom right [Index 1]
-    ManualObject->colour(1, 0, 0);
-    ManualObject->position(3, 1, 0); // top right [Index 2]
-    ManualObject->colour(1, 0, 0);
-    ManualObject->position(0, 1, 0); // top left [Index 3]
-    ManualObject->colour(1, 0, 0);
-    ManualObject->triangle(0, 1, 2);
-    ManualObject->triangle(0, 2, 3);
 
-    ManualObject->end();
-
+    // Ball Object
     Ogre::ManualObject* BallObject = NULL;
     BallObject = scnMgr->createManualObject("Triangle2");
     BallObject->setDynamic(false);
@@ -154,6 +167,25 @@ void OgreTutorial::createScene()
         createChildSceneNode("TriangleNode2");
     TriangleNode->attachObject(BallObject);
 
+
+
+    Ogre::ManualObject* ManualObject = NULL;
+    ManualObject = scnMgr->createManualObject("Triangle");
+    ManualObject->setDynamic(false);
+    ManualObject->begin("FlatVertexColour",
+        Ogre::RenderOperation::OT_TRIANGLE_LIST);
+    ManualObject->position(0, 0, 0); // Bottom left [Index 0]
+    ManualObject->colour(1, 0, 0);
+    ManualObject->position(3, 0, 0); // bottom right [Index 1]
+    ManualObject->colour(1, 0, 0);
+    ManualObject->position(3, 1, 0); // top right [Index 2]
+    ManualObject->colour(1, 0, 0);
+    ManualObject->position(0, 1, 0); // top left [Index 3]
+    ManualObject->colour(1, 0, 0);
+    ManualObject->triangle(0, 1, 2);
+    ManualObject->triangle(0, 2, 3);
+
+    ManualObject->end();
 
     TriangleNode = scnMgr->getRootSceneNode()->
         createChildSceneNode("TriangleNode");
@@ -220,6 +252,7 @@ bool OgreTutorial::keyPressed(const KeyboardEvent& evt)
 void OgreTutorial::createFrameListener()
 {
     Ogre::FrameListener* FrameListener = new ExampleFrameListener(TriangleNode);
+
     mRoot->addFrameListener(FrameListener);
 }
 
