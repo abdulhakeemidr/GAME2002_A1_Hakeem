@@ -6,14 +6,14 @@ using namespace OgreBites;
 
 
 
-OgreTutorial::OgreTutorial()
+Game::Game()
     : ApplicationContext("GAME2002 A1 Abdulhakeem Idris")
     
 {
 }
 
 
-void OgreTutorial::setup()
+void Game::setup()
 {
     // do not forget to call the base first
     ApplicationContext::setup();
@@ -32,7 +32,7 @@ void OgreTutorial::setup()
     createFrameListener();
 }
 
-void OgreTutorial::createTrayUI()
+void Game::createTrayUI()
 {
     OgreBites::TrayManager* mTrayMgr = new OgreBites::TrayManager("InterfaceName", getRenderWindow());
     //you must add this in order to add a tray
@@ -50,7 +50,7 @@ void OgreTutorial::createTrayUI()
     mLives = mTrayMgr->createLabel(TL_TOPLEFT, "lives", "5", 150);
 }
 
-void OgreTutorial::createScene()
+void Game::createScene()
 {
 
     // -- tutorial section start --
@@ -107,9 +107,9 @@ void OgreTutorial::createScene()
 
     BallObject->end();
 
-    TriangleNode = scnMgr->getRootSceneNode()->
-        createChildSceneNode("TriangleNode2");
-    TriangleNode->attachObject(BallObject);
+    BallNodePointer = scnMgr->getRootSceneNode()->
+        createChildSceneNode("Ball");
+    BallNodePointer->attachObject(BallObject);
 
 
 
@@ -131,14 +131,16 @@ void OgreTutorial::createScene()
 
     ManualObject->end();
 
-    TriangleNode = scnMgr->getRootSceneNode()->
-        createChildSceneNode("TriangleNode");
-    TriangleNode->attachObject(ManualObject);
-    TriangleNode->setPosition(Ogre::Vector3(0, -5, 0));
+    PlayerNodePointer = scnMgr->getRootSceneNode()->
+        createChildSceneNode("Player");
+    PlayerNodePointer->attachObject(ManualObject);
+    PlayerNodePointer->setPosition(Ogre::Vector3(0, -5, 0));
+
+    PlayerNodePointer = scnMgr->getSceneNode("Player");
     // -- tutorial section end --
 }
 
-void OgreTutorial::createCamera()
+void Game::createCamera()
 {
 
     //! [camera]
@@ -162,7 +164,7 @@ void OgreTutorial::createCamera()
     //! [camera]
 }
 
-bool OgreTutorial::keyPressed(const KeyboardEvent& evt)
+bool Game::keyPressed(const KeyboardEvent& evt)
 {
     switch (evt.keysym.sym)
     {
@@ -181,9 +183,13 @@ bool OgreTutorial::keyPressed(const KeyboardEvent& evt)
     return true;
 }
 
-void OgreTutorial::createFrameListener()
+void Game::createFrameListener()
 {
-    Ogre::FrameListener* FrameListener = new ExampleFrameListener(TriangleNode);
+    Ogre::FrameListener* FrameListener = new ExampleFrameListener(PlayerNodePointer);
+
+    mRoot->addFrameListener(FrameListener);
+
+    FrameListener = new ExampleFrameListener(BallNodePointer);
 
     mRoot->addFrameListener(FrameListener);
 }

@@ -15,8 +15,16 @@ public:
 
     bool frameStarted(const Ogre::FrameEvent& evt)
     {
-        _node->translate(translate * evt.timeSinceLastFrame);
-        translate = Ogre::Vector3(0, 0, 0);
+        if (_node->getName() == "Player")
+        {
+            _node->translate(translate * evt.timeSinceLastFrame);
+            translate = Ogre::Vector3(0, 0, 0);
+        }
+        if (_node->getName() == "Ball")
+        {
+            _node->translate(Ogre::Vector3(1, 0, 0) * evt.timeSinceLastFrame);
+        }
+
         return true;
     }
 };

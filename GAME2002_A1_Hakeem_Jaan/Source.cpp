@@ -9,7 +9,7 @@ int main(int argc, char** argv)
 {
     try
     {
-        OgreTutorial app;
+        Game app;
         app.initApp();
         app.getRoot()->startRendering();
         app.closeApp();
@@ -19,7 +19,6 @@ int main(int argc, char** argv)
         std::cerr << "Error occurred during execution: " << e.what() << '\n';
         return 1;
     }
-
     return 0;
 }
 

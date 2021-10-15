@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="ObjectCreator.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -28,6 +29,7 @@
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameFrameListener.h" />
+    <ClInclude Include="ObjectCreator.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

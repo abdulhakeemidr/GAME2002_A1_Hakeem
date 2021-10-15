@@ -16,7 +16,7 @@ static Ogre::Real m_Angle = 0.0;
 static Ogre::Vector3 translate(0, 0, 0);
 
 
-class OgreTutorial
+class Game
     : public ApplicationContext
     , public InputListener
 {
@@ -24,8 +24,8 @@ private:
     SceneManager* scnMgr;
     Root* root;
 public:
-    OgreTutorial();
-    virtual ~OgreTutorial() {}
+    Game();
+    virtual ~Game() {}
 
     void setup();
     void createScene();
@@ -35,7 +35,8 @@ public:
     void createTrayUI();
 
 
-    Ogre::SceneNode* TriangleNode;
+    Ogre::SceneNode* PlayerNodePointer;
+    Ogre::SceneNode* BallNodePointer;
     OgreBites::TrayListener myTrayListener;
     OgreBites::Label* mInfoLabel;
 
