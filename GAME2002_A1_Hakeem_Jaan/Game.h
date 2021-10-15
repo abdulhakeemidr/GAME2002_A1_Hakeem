@@ -15,6 +15,7 @@ using namespace OgreBites;
 static Ogre::Real m_Angle = 0.0;
 static Ogre::Vector3 translate(0, 0, 0);
 
+
 class OgreTutorial
     : public ApplicationContext
     , public InputListener
@@ -32,6 +33,8 @@ public:
     bool keyPressed(const KeyboardEvent& evt);
     void createFrameListener();
     void createTrayUI();
+
+
     Ogre::SceneNode* TriangleNode;
     OgreBites::TrayListener myTrayListener;
     OgreBites::Label* mInfoLabel;

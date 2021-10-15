@@ -1,14 +1,6 @@
 #include "Game.h"
 #include "GameFrameListener.h"
 
-
-//#include "Ogre.h"
-//#include "OgreApplicationContext.h"
-//#include "OgreInput.h"
-//#include "OgreRTShaderSystem.h"
-//#include "OgreTrays.h"
-//#include <iostream>
-
 using namespace Ogre;
 using namespace OgreBites;
 
@@ -177,24 +169,12 @@ bool OgreTutorial::keyPressed(const KeyboardEvent& evt)
     case SDLK_ESCAPE:
         getRoot()->queueEndRendering();
         break;
-        //case 'w':
-        //    translate = Ogre::Vector3(0, 10, 0);
-        //    break;
-        //case 's':
-        //    translate = Ogre::Vector3(0, -10, 0);
-        //    break;
     case 'a':
         translate = Ogre::Vector3(-10, 0, 0);
         break;
     case 'd':
         translate = Ogre::Vector3(10, 0, 0);
         break;
-        //case 'q':
-        //    translate = Ogre::Vector3(0, 0, -10);
-        //    break;
-        //case 'e':
-        //    translate = Ogre::Vector3(0, 0, 10);
-        //    break;
     default:
         break;
     }
