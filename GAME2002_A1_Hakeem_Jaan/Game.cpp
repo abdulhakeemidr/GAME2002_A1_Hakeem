@@ -12,6 +12,12 @@ Game::Game()
 {
 }
 
+Game& Game::Instance()
+{
+    static Game app;
+    return app;
+}
+
 
 void Game::setup()
 {
@@ -41,7 +47,7 @@ void Game::createTrayUI()
     //Once you have your tray manager, make sure you relay input events to it.
     addInputListener(mTrayMgr);
 
-    mInfoLabel = mTrayMgr->createLabel(TL_TOP, "TInfo", "Assignment 1", 200);
+    mInfoLabel = mTrayMgr->createLabel(TL_TOP, "TInfo", "Assignment 1", 250);
 
     mScoreLabel = mTrayMgr->createLabel(TL_TOPLEFT, "Score", "Score:", 150);
     mScore = mTrayMgr->createLabel(TL_TOPLEFT, "score", "0", 150);

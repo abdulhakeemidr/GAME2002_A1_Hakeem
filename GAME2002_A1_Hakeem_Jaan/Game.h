@@ -20,13 +20,13 @@ class Game
     : public ApplicationContext
     , public InputListener
 {
+    friend class ObjectCreator;
 private:
     SceneManager* scnMgr;
     Root* root;
 public:
     Game();
     virtual ~Game() {}
-
     void setup();
     void createScene();
     void createCamera();
@@ -34,6 +34,8 @@ public:
     void createFrameListener();
     void createTrayUI();
 
+    static Game& Instance();
+    SceneManager* getSceneManager() { return scnMgr; }
 
     Ogre::SceneNode* PlayerNodePointer;
     Ogre::SceneNode* BallNodePointer;
