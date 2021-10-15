@@ -20,7 +20,6 @@ class Game
     : public ApplicationContext
     , public InputListener
 {
-    friend class ObjectCreator;
 private:
     SceneManager* scnMgr;
     Root* root;

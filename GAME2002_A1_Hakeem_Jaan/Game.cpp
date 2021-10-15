@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "ObjectCreator.h"
 #include "GameFrameListener.h"
 
 using namespace Ogre;
@@ -135,12 +136,19 @@ void Game::createScene()
     ManualObject->triangle(0, 1, 2);
     ManualObject->triangle(0, 2, 3);
 
+
     ManualObject->end();
 
     PlayerNodePointer = scnMgr->getRootSceneNode()->
         createChildSceneNode("Player");
     PlayerNodePointer->attachObject(ManualObject);
     PlayerNodePointer->setPosition(Ogre::Vector3(0, -5, 0));
+
+    ObjectCreator WhiteSquare("Square", 5, 1);
+    PlayerNodePointer = scnMgr->getRootSceneNode()->
+        createChildSceneNode("Square");
+    PlayerNodePointer->attachObject(WhiteSquare.getObject());
+    PlayerNodePointer->setPosition(Ogre::Vector3(0, 0, 0));
 
     PlayerNodePointer = scnMgr->getSceneNode("Player");
     // -- tutorial section end --
