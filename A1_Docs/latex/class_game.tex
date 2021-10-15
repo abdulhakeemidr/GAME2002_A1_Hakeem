@@ -1,0 +1,96 @@
+\hypertarget{class_game}{}\doxysection{Game Class Reference}
+\label{class_game}\index{Game@{Game}}
+Inheritance diagram for Game\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_game}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_game_ae4618ba40eabbbe65e35f1bb239aa29b}\label{class_game_ae4618ba40eabbbe65e35f1bb239aa29b}} 
+void {\bfseries setup} ()
+\item 
+void \mbox{\hyperlink{class_game_acc39660fc2452fc78ca45330d6032e5c}{create\+Scene}} ()
+\item 
+void \mbox{\hyperlink{class_game_a73744fbffd68a0ebadfedcecbfff3236}{create\+Camera}} ()
+\item 
+\mbox{\Hypertarget{class_game_a2ba00c3475d222573e5ad54b88b389b7}\label{class_game_a2ba00c3475d222573e5ad54b88b389b7}} 
+bool {\bfseries key\+Pressed} (const Keyboard\+Event \&evt)
+\item 
+\mbox{\Hypertarget{class_game_af5b56d4ec80bba41a21763b66603c0da}\label{class_game_af5b56d4ec80bba41a21763b66603c0da}} 
+void {\bfseries create\+Frame\+Listener} ()
+\item 
+\mbox{\Hypertarget{class_game_a46ed3db94338710b4c8605f0500d95ba}\label{class_game_a46ed3db94338710b4c8605f0500d95ba}} 
+void {\bfseries create\+Tray\+UI} ()
+\item 
+\mbox{\Hypertarget{class_game_ad93febb77186e0adf0762746775c81ec}\label{class_game_ad93febb77186e0adf0762746775c81ec}} 
+Scene\+Manager $\ast$ {\bfseries get\+Scene\+Manager} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_game_a0b3ad989fe67e72b4b6b2f36a059479a}\label{class_game_a0b3ad989fe67e72b4b6b2f36a059479a}} 
+static \mbox{\hyperlink{class_game}{Game}} \& {\bfseries Instance} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_game_a256202c7ac4ecd3f14d4ca97c1580748}\label{class_game_a256202c7ac4ecd3f14d4ca97c1580748}} 
+Ogre\+::\+Scene\+Node $\ast$ {\bfseries Player\+Node\+Pointer}
+\item 
+\mbox{\Hypertarget{class_game_afd55ed716c3f9187a357fdcafb84bf04}\label{class_game_afd55ed716c3f9187a357fdcafb84bf04}} 
+Ogre\+::\+Scene\+Node $\ast$ {\bfseries Ball\+Node\+Pointer}
+\item 
+\mbox{\Hypertarget{class_game_af34a45d1eceabfba4403b64d45876348}\label{class_game_af34a45d1eceabfba4403b64d45876348}} 
+Ogre\+Bites\+::\+Tray\+Listener {\bfseries my\+Tray\+Listener}
+\item 
+\mbox{\Hypertarget{class_game_a072635e63d48082440d02b27010372fd}\label{class_game_a072635e63d48082440d02b27010372fd}} 
+Ogre\+Bites\+::\+Label $\ast$ {\bfseries m\+Info\+Label}
+\item 
+\mbox{\Hypertarget{class_game_a0b460b842609d48e4f22212081650112}\label{class_game_a0b460b842609d48e4f22212081650112}} 
+Ogre\+Bites\+::\+Label $\ast$ {\bfseries m\+Score\+Label}
+\item 
+\mbox{\Hypertarget{class_game_a13c9913114e1c69ce99539fed27af8f6}\label{class_game_a13c9913114e1c69ce99539fed27af8f6}} 
+Ogre\+Bites\+::\+Label $\ast$ {\bfseries m\+Score}
+\item 
+\mbox{\Hypertarget{class_game_a4462f931a8377f644541cffbf642fccd}\label{class_game_a4462f931a8377f644541cffbf642fccd}} 
+Ogre\+Bites\+::\+Label $\ast$ {\bfseries m\+Lives\+Label}
+\item 
+\mbox{\Hypertarget{class_game_a72793df0c619973aeaf69d186ed2b94d}\label{class_game_a72793df0c619973aeaf69d186ed2b94d}} 
+Ogre\+Bites\+::\+Label $\ast$ {\bfseries m\+Lives}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_game_a73744fbffd68a0ebadfedcecbfff3236}\label{class_game_a73744fbffd68a0ebadfedcecbfff3236}} 
+\index{Game@{Game}!createCamera@{createCamera}}
+\index{createCamera@{createCamera}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{createCamera()}{createCamera()}}
+{\footnotesize\ttfamily void Game\+::create\+Camera (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{[}camera\mbox{]}
+
+\mbox{[}camera\mbox{]}\mbox{\Hypertarget{class_game_acc39660fc2452fc78ca45330d6032e5c}\label{class_game_acc39660fc2452fc78ca45330d6032e5c}} 
+\index{Game@{Game}!createScene@{createScene}}
+\index{createScene@{createScene}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{createScene()}{createScene()}}
+{\footnotesize\ttfamily void Game\+::create\+Scene (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{[}turnlights\mbox{]}
+
+\mbox{[}turnlights\mbox{]}
+
+\mbox{[}newlight\mbox{]}
+
+\mbox{[}newlight\mbox{]}
+
+\mbox{[}lightpos\mbox{]}
+
+\mbox{[}lightpos\mbox{]}
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+GAME2002\+\_\+\+A1\+\_\+\+Hakeem/\+GAME2002\+\_\+\+A1\+\_\+\+Hakeem\+\_\+\+Jaan/Game.\+h\item 
+GAME2002\+\_\+\+A1\+\_\+\+Hakeem/\+GAME2002\+\_\+\+A1\+\_\+\+Hakeem\+\_\+\+Jaan/Game.\+cpp\end{DoxyCompactItemize}

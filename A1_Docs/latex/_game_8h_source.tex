@@ -1,0 +1,57 @@
+\hypertarget{_game_8h_source}{}\doxysection{Game.\+h}
+\label{_game_8h_source}\index{GAME2002\_A1\_Hakeem/GAME2002\_A1\_Hakeem\_Jaan/Game.h@{GAME2002\_A1\_Hakeem/GAME2002\_A1\_Hakeem\_Jaan/Game.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#ifndef \_GAME\_H\_\_}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#define \_GAME\_H\_\_}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}Ogre.h"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}OgreApplicationContext.h"{}}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}OgreInput.h"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}OgreRTShaderSystem.h"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}OgreTrays.h"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{using namespace }Ogre;}
+\DoxyCodeLine{13 \textcolor{keyword}{using namespace }OgreBites;}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{keyword}{static} Ogre::Real m\_Angle = 0.0;}
+\DoxyCodeLine{16 \textcolor{keyword}{static} Ogre::Vector3 translate(0, 0, 0);}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{class }\mbox{\hyperlink{class_game}{Game}}}
+\DoxyCodeLine{20     : \textcolor{keyword}{public} ApplicationContext}
+\DoxyCodeLine{21     , \textcolor{keyword}{public} InputListener}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23 \textcolor{keyword}{private}:}
+\DoxyCodeLine{24     SceneManager* scnMgr;}
+\DoxyCodeLine{25     Root* root;}
+\DoxyCodeLine{26 \textcolor{keyword}{public}:}
+\DoxyCodeLine{27     \mbox{\hyperlink{class_game}{Game}}();}
+\DoxyCodeLine{28     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_game}{\string~Game}}() \{\}}
+\DoxyCodeLine{29     \textcolor{keywordtype}{void} setup();}
+\DoxyCodeLine{30     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_acc39660fc2452fc78ca45330d6032e5c}{createScene}}();}
+\DoxyCodeLine{31     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_a73744fbffd68a0ebadfedcecbfff3236}{createCamera}}();}
+\DoxyCodeLine{32     \textcolor{keywordtype}{bool} keyPressed(\textcolor{keyword}{const} KeyboardEvent\& evt);}
+\DoxyCodeLine{33     \textcolor{keywordtype}{void} createFrameListener();}
+\DoxyCodeLine{34     \textcolor{keywordtype}{void} createTrayUI();}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36     \textcolor{keyword}{static} \mbox{\hyperlink{class_game}{Game}}\& Instance();}
+\DoxyCodeLine{37     SceneManager* getSceneManager() \{ \textcolor{keywordflow}{return} scnMgr; \}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39     Ogre::SceneNode* PlayerNodePointer;}
+\DoxyCodeLine{40     Ogre::SceneNode* BallNodePointer;}
+\DoxyCodeLine{41     OgreBites::TrayListener myTrayListener;}
+\DoxyCodeLine{42     OgreBites::Label* mInfoLabel;}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     OgreBites::Label* mScoreLabel;}
+\DoxyCodeLine{45     OgreBites::Label* mScore;}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47     OgreBites::Label* mLivesLabel;}
+\DoxyCodeLine{48     OgreBites::Label* mLives;}
+\DoxyCodeLine{49 \};}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

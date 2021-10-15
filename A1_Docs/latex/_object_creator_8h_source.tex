@@ -1,0 +1,75 @@
+\hypertarget{_object_creator_8h_source}{}\doxysection{Object\+Creator.\+h}
+\label{_object_creator_8h_source}\index{GAME2002\_A1\_Hakeem/GAME2002\_A1\_Hakeem\_Jaan/ObjectCreator.h@{GAME2002\_A1\_Hakeem/GAME2002\_A1\_Hakeem\_Jaan/ObjectCreator.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#ifndef \_OBJECTCREATOR\_H\_\_}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#define \_OBJECTCREATOR\_H\_\_}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}Ogre.h"{}}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include "{}Game.h"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{using namespace }Ogre;}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{class }\mbox{\hyperlink{class_object_creator}{ObjectCreator}}}
+\DoxyCodeLine{13 \{}
+\DoxyCodeLine{14 \textcolor{keyword}{private}:}
+\DoxyCodeLine{15     Ogre::ManualObject* Object = NULL;}
+\DoxyCodeLine{16     \textcolor{comment}{// Dynamic array of Vector3}}
+\DoxyCodeLine{17     \textcolor{comment}{//Ogre::Vector3 vertex[VertexNum];}}
+\DoxyCodeLine{18     std::vector<Ogre::Vector3> vertices;}
+\DoxyCodeLine{19     Ogre::String ObjName;}
+\DoxyCodeLine{20     \textcolor{keywordtype}{float} Height;}
+\DoxyCodeLine{21     \textcolor{keywordtype}{float} Width;}
+\DoxyCodeLine{22     \textcolor{keywordtype}{int} VertexNum;}
+\DoxyCodeLine{23 \textcolor{keyword}{public}:}
+\DoxyCodeLine{24     \mbox{\hyperlink{class_object_creator}{ObjectCreator}}(Ogre::String objectName, \textcolor{keywordtype}{float} height, \textcolor{keywordtype}{float} width, \textcolor{keywordtype}{int} vertexNumber = 4)}
+\DoxyCodeLine{25         : ObjName(objectName), Height(height), Width(width), VertexNum(vertexNumber)}
+\DoxyCodeLine{26     \{}
+\DoxyCodeLine{27         CreateVertices();}
+\DoxyCodeLine{28         CreateObject();}
+\DoxyCodeLine{29     \}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31     ManualObject* getObject()}
+\DoxyCodeLine{32     \{}
+\DoxyCodeLine{33         \textcolor{keywordflow}{return} Object;}
+\DoxyCodeLine{34     \}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36     \textcolor{keywordtype}{void} CreateObject()}
+\DoxyCodeLine{37     \{}
+\DoxyCodeLine{38         Object = Game::Instance().getSceneManager()-\/>createManualObject(ObjName);}
+\DoxyCodeLine{39         Object-\/>setDynamic(\textcolor{keyword}{false});}
+\DoxyCodeLine{40         Object-\/>begin(\textcolor{stringliteral}{"{}BaseWhiteNoLighting"{}}, Ogre::RenderOperation::OT\_TRIANGLE\_LIST);}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < VertexNum; i++)}
+\DoxyCodeLine{43         \{}
+\DoxyCodeLine{44             Object-\/>position(vertices[i]);}
+\DoxyCodeLine{45         \}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47         Object-\/>triangle(0, 1, 2);}
+\DoxyCodeLine{48         Object-\/>triangle(0, 2, 3);}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50         Object-\/>end();}
+\DoxyCodeLine{51     \}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53     \textcolor{keywordtype}{void} CreateVertices()}
+\DoxyCodeLine{54     \{}
+\DoxyCodeLine{55         Ogre::Vector3 widthVec(Width, 0, 0);}
+\DoxyCodeLine{56         Ogre::Vector3 heightVec(0, Height, 0);}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58         vertices.push\_back(Vector3::ZERO); \textcolor{comment}{// bottom left}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60         vertices.push\_back(widthVec); \textcolor{comment}{// bottom right}}
+\DoxyCodeLine{61         }
+\DoxyCodeLine{62         }
+\DoxyCodeLine{63         vertices.push\_back(heightVec + widthVec); \textcolor{comment}{// top left}}
+\DoxyCodeLine{64         }
+\DoxyCodeLine{65         vertices.push\_back(heightVec); \textcolor{comment}{// top right}}
+\DoxyCodeLine{66     \}}
+\DoxyCodeLine{67 \};}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
