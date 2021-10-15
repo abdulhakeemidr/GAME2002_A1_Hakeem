@@ -1,4 +1,4 @@
-# GAME2002_A1_Hakeem_Jaan
+# GAME2002_A1_Hakeem
 Game Engine Development Assignment 1
 
 
