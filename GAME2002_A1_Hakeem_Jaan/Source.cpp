@@ -82,9 +82,9 @@ void OgreTutorial::createScene()
 
     // -- tutorial section start --
     //! [turnlights]
-    scnMgr->setAmbientLight(ColourValue(0.5, 0.5, 0.5));
+    scnMgr->setAmbientLight(ColourValue(1.0f, 1.0f, 1.0f));
     //! [turnlights]
-
+    
     //! [newlight]
     //
     Light* light1 = scnMgr->createLight("Light1");
@@ -117,20 +117,48 @@ void OgreTutorial::createScene()
     Ogre::ManualObject* ManualObject = NULL;
     ManualObject = scnMgr->createManualObject("Triangle");
     ManualObject->setDynamic(false);
-    ManualObject->begin("BaseWhiteNoLighting",
+    ManualObject->begin("FlatVertexColour",
         Ogre::RenderOperation::OT_TRIANGLE_LIST);
-    ManualObject->position(0, 0, 0);
-    ManualObject->position(1, 0, 0);
-    ManualObject->position(1, 1, 0);
-    ManualObject->position(0, 1, 0);
+    ManualObject->position(0, 0, 0); // Bottom left [Index 0]
+    ManualObject->colour(1, 0, 0);
+    ManualObject->position(3, 0, 0); // bottom right [Index 1]
+    ManualObject->colour(1, 0, 0);
+    ManualObject->position(3, 1, 0); // top right [Index 2]
+    ManualObject->colour(1, 0, 0);
+    ManualObject->position(0, 1, 0); // top left [Index 3]
+    ManualObject->colour(1, 0, 0);
     ManualObject->triangle(0, 1, 2);
+    ManualObject->triangle(0, 2, 3);
+
     ManualObject->end();
+
+    Ogre::ManualObject* BallObject = NULL;
+    BallObject = scnMgr->createManualObject("Triangle2");
+    BallObject->setDynamic(false);
+    BallObject->begin("FlatVertexColour",
+        Ogre::RenderOperation::OT_TRIANGLE_LIST);
+    BallObject->position(0, 0, 0); // Bottom left [Index 0]
+    BallObject->colour(1, 0, 0);
+    BallObject->position(1, 0, 0); // bottom right [Index 1]
+    BallObject->colour(0, 1, 0);
+    BallObject->position(1, 1, 0); // top right [Index 2]
+    BallObject->colour(0, 0, 1);
+    BallObject->position(0, 1, 0); // top left [Index 3]
+    BallObject->colour(0, 1, 0.5);
+    BallObject->triangle(0, 1, 2);
+    BallObject->triangle(0, 2, 3);
+
+    BallObject->end();
+
+    TriangleNode = scnMgr->getRootSceneNode()->
+        createChildSceneNode("TriangleNode2");
+    TriangleNode->attachObject(BallObject);
+
 
     TriangleNode = scnMgr->getRootSceneNode()->
         createChildSceneNode("TriangleNode");
     TriangleNode->attachObject(ManualObject);
-
-
+    TriangleNode->setPosition(Ogre::Vector3(0, -5, 0));
     // -- tutorial section end --
 }
 
@@ -148,8 +176,12 @@ void OgreTutorial::createCamera()
     camNode->setPosition(0, 0, 15);
     camNode->lookAt(Ogre::Vector3(0, 0, 0), Node::TS_WORLD);
 
+    Viewport* viewPort = NULL;
+
     // and tell it to render into the main window
-    getRenderWindow()->addViewport(cam);
+    viewPort = getRenderWindow()->addViewport(cam);
+    // Set the background colour
+    viewPort->setBackgroundColour(Ogre::ColourValue(0.0f, 0.5f, 1.0f));
 
     //! [camera]
 }
@@ -161,24 +193,24 @@ bool OgreTutorial::keyPressed(const KeyboardEvent& evt)
     case SDLK_ESCAPE:
         getRoot()->queueEndRendering();
         break;
-    case 'w':
-        translate = Ogre::Vector3(0, 10, 0);
-        break;
-    case 's':
-        translate = Ogre::Vector3(0, -10, 0);
-        break;
+    //case 'w':
+    //    translate = Ogre::Vector3(0, 10, 0);
+    //    break;
+    //case 's':
+    //    translate = Ogre::Vector3(0, -10, 0);
+    //    break;
     case 'a':
         translate = Ogre::Vector3(-10, 0, 0);
         break;
     case 'd':
         translate = Ogre::Vector3(10, 0, 0);
         break;
-    case 'q':
-        translate = Ogre::Vector3(0, 0, -10);
-        break;
-    case 'e':
-        translate = Ogre::Vector3(0, 0, 10);
-        break;
+    //case 'q':
+    //    translate = Ogre::Vector3(0, 0, -10);
+    //    break;
+    //case 'e':
+    //    translate = Ogre::Vector3(0, 0, 10);
+    //    break;
     default:
         break;
     }
