@@ -26,7 +26,7 @@ public:
         if (_node->getName() == "Ball")
         {
             
-            //_node->translate(ballTranslate * evt.timeSinceLastFrame);
+            _node->translate(ballTranslate * evt.timeSinceLastFrame);
             float Height = Game::Instance().getRenderWindow()->getHeight() / 2;
             float Width = Game::Instance().getRenderWindow()->getWidth() / 2;
 
