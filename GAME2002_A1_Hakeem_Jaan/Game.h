@@ -46,6 +46,9 @@ public:
 
     OgreBites::Label* mLivesLabel;
     OgreBites::Label* mLives;
+
+    OgreBites::Label* mTimeLabel;
+    OgreBites::Label* mTime;
 };
 
 #endif

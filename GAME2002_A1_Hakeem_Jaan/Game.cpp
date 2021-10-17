@@ -50,6 +50,11 @@ void Game::createTrayUI()
 
     mLivesLabel = mTrayMgr->createLabel(TL_TOPLEFT, "Lives", "Lives:", 150);
     mLives = mTrayMgr->createLabel(TL_TOPLEFT, "lives", "5", 150);
+
+    mTrayMgr->showFrameStats(TL_TOPRIGHT);
+    mTrayMgr->toggleAdvancedFrameStats();
+
+    
 }
 
 void Game::createScene()
@@ -88,26 +93,6 @@ void Game::createScene()
     //! [lightpos]
 
 
-    // Ball Object
-    //Ogre::ManualObject* BallObject = NULL;
-    //BallObject = scnMgr->createManualObject("BallObj");
-    //BallObject->setDynamic(false);
-    //BallObject->begin("FlatVertexColour",
-    //    Ogre::RenderOperation::OT_TRIANGLE_LIST);
-    //BallObject->position(0, 0, 0); // Bottom left [Index 0]
-    //BallObject->colour(1, 0, 0);
-    //BallObject->position(1, 0, 0); // bottom right [Index 1]
-    //BallObject->colour(0, 1, 0);
-    //BallObject->position(1, 1, 0); // top right [Index 2]
-    //BallObject->colour(0, 0, 1);
-    //BallObject->position(0, 1, 0); // top left [Index 3]
-    //BallObject->colour(0, 1, 0.5);
-    //BallObject->triangle(0, 1, 2);
-    //BallObject->triangle(0, 2, 3);
-    //BallObject->end();
-    //BallNodePointer = scnMgr->getRootSceneNode()->
-    //    createChildSceneNode("Ball");
-    //BallNodePointer->attachObject(BallObject);
 
     // Ball Object using object creator
     ObjectCreator WhiteSquare("BallObj", 1, 1);

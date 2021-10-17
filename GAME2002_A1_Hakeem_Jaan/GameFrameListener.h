@@ -21,16 +21,23 @@ public:
         {
             _node->translate(translate * evt.timeSinceLastFrame);
             translate = Ogre::Vector3(0, 0, 0);
+            //std::cout << _node->getPosition().x << std::endl;
         }
         if (_node->getName() == "Ball")
         {
             
-            _node->translate(ballTranslate * evt.timeSinceLastFrame);
+            //_node->translate(ballTranslate * evt.timeSinceLastFrame);
             float Height = Game::Instance().getRenderWindow()->getHeight() / 2;
             float Width = Game::Instance().getRenderWindow()->getWidth() / 2;
-            //std::cout << Game::Instance().getRenderWindow()->getWidth() << std::endl;
-            std::cout << _node->getPosition().x << std::endl;
 
+            //std::cout << Game::Instance().getRenderWindow()->getViewport(0)->getWidth() << std::endl;
+            
+            //unsigned int h, w, cd;
+            //Game::Instance().getRenderWindow()->getMetrics(w, h, cd);
+            ////std::cout << _node->getPosition().x << std::endl;
+            //std::cout << "Width is " << w << ", Height is " << h << std::endl;
+            std::cout << evt.timeSinceLastEvent << std::endl;
+            
             if (_node->getPosition().x > Width)
             {
                 ballTranslate = ballTranslate * -1;
