@@ -29,6 +29,7 @@ public:
     void setup();
     void createScene();
     void createCamera();
+    void Update();
     bool keyPressed(const KeyboardEvent& evt);
     void createFrameListener();
     void createTrayUI();

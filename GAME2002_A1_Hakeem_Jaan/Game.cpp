@@ -15,6 +15,9 @@ Game& Game::Instance()
     return app;
 }
 
+void Game::Update()
+{
+}
 
 void Game::setup()
 {
@@ -95,37 +98,43 @@ void Game::createScene()
 
 
     // Ball Object using object creator
-    ObjectCreator WhiteSquare("BallObj", 1, 1);
+    /*ObjectCreator WhiteSquare("BallObj", 1, 1);
     BallNodePointer = scnMgr->getRootSceneNode()->
         createChildSceneNode("Ball");
     BallNodePointer->attachObject(WhiteSquare.getObject());
-    BallNodePointer->setPosition(Ogre::Vector3(0, 0, 0));
+    BallNodePointer->setPosition(Ogre::Vector3(0, 0, 0));*/
 
-    Ogre::ManualObject* ManualObject = NULL;
-    ManualObject = scnMgr->createManualObject("PlayerObj");
-    ManualObject->setDynamic(false);
-    ManualObject->begin("FlatVertexColour",
-        Ogre::RenderOperation::OT_TRIANGLE_LIST);
-    ManualObject->position(0, 0, 0); // Bottom left [Index 0]
-    ManualObject->colour(1, 0, 0);
-    ManualObject->position(3, 0, 0); // bottom right [Index 1]
-    ManualObject->colour(1, 0, 0);
-    ManualObject->position(3, 1, 0); // top right [Index 2]
-    ManualObject->colour(1, 0, 0);
-    ManualObject->position(0, 1, 0); // top left [Index 3]
-    ManualObject->colour(1, 0, 0);
-    ManualObject->triangle(0, 1, 2);
-    ManualObject->triangle(0, 2, 3);
+    //Ogre::ManualObject* ManualObject = NULL;
+    //ManualObject = scnMgr->createManualObject("PlayerObj");
+    //ManualObject->setDynamic(false);
+    //ManualObject->begin("FlatVertexColour",
+    //    Ogre::RenderOperation::OT_TRIANGLE_LIST);
+    //ManualObject->position(0, 0, 0); // Bottom left [Index 0]
+    //ManualObject->colour(1, 0, 0);
+    //ManualObject->position(3, 0, 0); // bottom right [Index 1]
+    //ManualObject->colour(1, 0, 0);
+    //ManualObject->position(3, 1, 0); // top right [Index 2]
+    //ManualObject->colour(1, 0, 0);
+    //ManualObject->position(0, 1, 0); // top left [Index 3]
+    //ManualObject->colour(1, 0, 0);
+    //ManualObject->triangle(0, 1, 2);
+    //ManualObject->triangle(0, 2, 3);
+    //
+    //ManualObject->end();
 
+    Ogre::Entity* ballEntity = scnMgr->createEntity(SceneManager::PrefabType::PT_SPHERE);
+    BallNodePointer = scnMgr->getRootSceneNode()->createChildSceneNode("Ball");
+    BallNodePointer->setPosition(0, 0, 0);
+    BallNodePointer->setScale(0.01f, 0.01f, 0.01f);
+    BallNodePointer->attachObject(ballEntity);
 
-    ManualObject->end();
+    Ogre::Entity* paddleEntity = scnMgr->createEntity(SceneManager::PrefabType::PT_PLANE);
+    //Ogre::SceneNode* paddleNode = scnMgr->getRootSceneNode()->createChildSceneNode();
+    PlayerNodePointer = scnMgr->getRootSceneNode()->createChildSceneNode("Player");
+    PlayerNodePointer->setPosition(0, -5, 0);
+    PlayerNodePointer->setScale(0.01f, 0.002f, 0.01f);
+    PlayerNodePointer->attachObject(paddleEntity);
 
-    PlayerNodePointer = scnMgr->getRootSceneNode()->
-        createChildSceneNode("Player");
-    PlayerNodePointer->attachObject(ManualObject);
-    PlayerNodePointer->setPosition(Ogre::Vector3(0, -5, 0));
-
-    
 
     PlayerNodePointer = scnMgr->getSceneNode("Player");
     // -- tutorial section end --
@@ -155,6 +164,8 @@ void Game::createCamera()
     //! [camera]
 }
 
+
+
 bool Game::keyPressed(const KeyboardEvent& evt)
 {
     switch (evt.keysym.sym)
@@ -163,10 +174,17 @@ bool Game::keyPressed(const KeyboardEvent& evt)
         getRoot()->queueEndRendering();
         break;
     case 'a':
-        translate = Ogre::Vector3(-10, 0, 0);
+        if (PlayerNodePointer->getPosition().x > -7)
+        {
+            translate = Ogre::Vector3(-10, 0, 0);
+        }
         break;
     case 'd':
-        translate = Ogre::Vector3(10, 0, 0);
+        if (PlayerNodePointer->getPosition().x < 7)
+        {
+            translate = Ogre::Vector3(10, 0, 0);
+        }
+        
         break;
     default:
         break;
