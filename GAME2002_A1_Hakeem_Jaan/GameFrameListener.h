@@ -38,6 +38,8 @@ public:
 
             _node->translate(2 * ballTranslate * evt.timeSinceLastFrame);
 
+            //_node->_getWorldAABB().intersects();
+
 
             //std::cout << Game::Instance().getRenderWindow()->getViewport(0)->getWidth() << std::endl;
             //unsigned int h, w, cd;

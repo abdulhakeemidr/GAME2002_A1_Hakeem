@@ -39,6 +39,7 @@ public:
 
     Ogre::SceneNode* PlayerNodePointer;
     Ogre::SceneNode* BallNodePointer;
+
     OgreBites::TrayListener myTrayListener;
     OgreBites::Label* mInfoLabel;
 

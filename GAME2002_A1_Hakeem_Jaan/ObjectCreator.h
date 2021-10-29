@@ -12,58 +12,43 @@ using namespace Ogre;
 class ObjectCreator
 {
 private:
-	Ogre::ManualObject* Object = NULL;
+	Ogre::Entity* ObjectEntity = NULL;
+	Ogre::SceneNode* ObjSceneNode = NULL;
 	// Dynamic array of Vector3
 	//Ogre::Vector3 vertex[VertexNum];
 	std::vector<Ogre::Vector3> vertices;
 	Ogre::String ObjName;
-	float Height;
-	float Width;
-	int VertexNum;
+	SceneManager::PrefabType pType;
+	Ogre::Vector3 Position;
+	Ogre::Vector3 Scale;
+
+	void CreateObjEntity()
+	{
+		ObjectEntity = Game::Instance().getSceneManager()->createEntity(pType);
+		ObjSceneNode = Game::Instance().getSceneManager()->getRootSceneNode()->createChildSceneNode("Player");
+		ObjSceneNode->setPosition(0, -5, 0);
+		ObjSceneNode->setScale(0.01f, 0.002f, 0.01f);
+		ObjSceneNode->attachObject(ObjectEntity);
+	}
+
 public:
-	ObjectCreator(Ogre::String objectName, float height, float width, int vertexNumber = 4)
-		: ObjName(objectName), Height(height), Width(width), VertexNum(vertexNumber)
+	ObjectCreator(Ogre::String objectName, Ogre::SceneManager::PrefabType type, const Vector3 &position, const Vector3& scale)
+		: ObjName(objectName), pType(type), Position(position)
 	{
-		CreateVertices();
-		CreateObject();
+		Scale = scale;
+		CreateObjEntity();
 	}
 
-	ManualObject* getObject()
+	SceneNode* getObjectSceneNode()
 	{
-		return Object;
+		return ObjSceneNode;
 	}
 
-	void CreateObject()
+	Entity* getObjEntity()
 	{
-		Object = Game::Instance().getSceneManager()->createManualObject(ObjName);
-		Object->setDynamic(false);
-		Object->begin("BaseWhiteNoLighting", Ogre::RenderOperation::OT_TRIANGLE_LIST);
-
-		for (int i = 0; i < VertexNum; i++)
-		{
-			Object->position(vertices[i]);
-		}
-
-		Object->triangle(0, 1, 2);
-		Object->triangle(0, 2, 3);
-
-		Object->end();
+		return ObjectEntity;
 	}
 
-	void CreateVertices()
-	{
-		Ogre::Vector3 widthVec(Width, 0, 0);
-		Ogre::Vector3 heightVec(0, Height, 0);
-
-		vertices.push_back(Vector3::ZERO); // bottom left
-
-		vertices.push_back(widthVec); // bottom right
-		
-		
-		vertices.push_back(heightVec + widthVec); // top left
-		
-		vertices.push_back(heightVec); // top right
-	}
 };
 
 #endif

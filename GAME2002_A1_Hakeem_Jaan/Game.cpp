@@ -96,47 +96,16 @@ void Game::createScene()
     //! [lightpos]
 
 
-
     // Ball Object using object creator
-    /*ObjectCreator WhiteSquare("BallObj", 1, 1);
-    BallNodePointer = scnMgr->getRootSceneNode()->
-        createChildSceneNode("Ball");
-    BallNodePointer->attachObject(WhiteSquare.getObject());
-    BallNodePointer->setPosition(Ogre::Vector3(0, 0, 0));*/
+    
 
-    //Ogre::ManualObject* ManualObject = NULL;
-    //ManualObject = scnMgr->createManualObject("PlayerObj");
-    //ManualObject->setDynamic(false);
-    //ManualObject->begin("FlatVertexColour",
-    //    Ogre::RenderOperation::OT_TRIANGLE_LIST);
-    //ManualObject->position(0, 0, 0); // Bottom left [Index 0]
-    //ManualObject->colour(1, 0, 0);
-    //ManualObject->position(3, 0, 0); // bottom right [Index 1]
-    //ManualObject->colour(1, 0, 0);
-    //ManualObject->position(3, 1, 0); // top right [Index 2]
-    //ManualObject->colour(1, 0, 0);
-    //ManualObject->position(0, 1, 0); // top left [Index 3]
-    //ManualObject->colour(1, 0, 0);
-    //ManualObject->triangle(0, 1, 2);
-    //ManualObject->triangle(0, 2, 3);
-    //
-    //ManualObject->end();
+    ObjectCreator ball("Ball", SceneManager::PrefabType::PT_SPHERE, Ogre::Vector3(0, 0, 0), Ogre::Vector3(0.01f, 0.01f, 0.01f));
 
-    Ogre::Entity* ballEntity = scnMgr->createEntity(SceneManager::PrefabType::PT_SPHERE);
-    BallNodePointer = scnMgr->getRootSceneNode()->createChildSceneNode("Ball");
-    BallNodePointer->setPosition(0, 0, 0);
-    BallNodePointer->setScale(0.01f, 0.01f, 0.01f);
-    BallNodePointer->attachObject(ballEntity);
+    BallNodePointer = ball.getObjectSceneNode();
 
-    Ogre::Entity* paddleEntity = scnMgr->createEntity(SceneManager::PrefabType::PT_PLANE);
-    //Ogre::SceneNode* paddleNode = scnMgr->getRootSceneNode()->createChildSceneNode();
-    PlayerNodePointer = scnMgr->getRootSceneNode()->createChildSceneNode("Player");
-    PlayerNodePointer->setPosition(0, -5, 0);
-    PlayerNodePointer->setScale(0.01f, 0.002f, 0.01f);
-    PlayerNodePointer->attachObject(paddleEntity);
+    ObjectCreator paddle("Player", SceneManager::PrefabType::PT_PLANE, Ogre::Vector3(0, -5, 0), Ogre::Vector3(0.01f, 0.002f, 0.01f));
 
-
-    PlayerNodePointer = scnMgr->getSceneNode("Player");
+    PlayerNodePointer = paddle.getObjectSceneNode();
     // -- tutorial section end --
 }
 
@@ -163,8 +132,6 @@ void Game::createCamera()
 
     //! [camera]
 }
-
-
 
 bool Game::keyPressed(const KeyboardEvent& evt)
 {
