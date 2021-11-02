@@ -22,12 +22,12 @@ private:
 	Ogre::Vector3 Position;
 	Ogre::Vector3 Scale;
 
-	void CreateObjEntity()
+	void CreateObjEntity(Ogre::String SceneName)
 	{
 		ObjectEntity = Game::Instance().getSceneManager()->createEntity(pType);
-		ObjSceneNode = Game::Instance().getSceneManager()->getRootSceneNode()->createChildSceneNode("Player");
+		ObjSceneNode = Game::Instance().getSceneManager()->getRootSceneNode()->createChildSceneNode(SceneName);
 		ObjSceneNode->setPosition(0, -5, 0);
-		ObjSceneNode->setScale(0.01f, 0.002f, 0.01f);
+		ObjSceneNode->setScale(Scale);
 		ObjSceneNode->attachObject(ObjectEntity);
 	}
 
@@ -36,7 +36,7 @@ public:
 		: ObjName(objectName), pType(type), Position(position)
 	{
 		Scale = scale;
-		CreateObjEntity();
+		CreateObjEntity(objectName);
 	}
 
 	SceneNode* getObjectSceneNode()

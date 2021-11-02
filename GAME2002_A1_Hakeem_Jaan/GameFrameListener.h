@@ -36,7 +36,7 @@ public:
                 ballTranslate.y = -ballTranslate.y;
             }
 
-            _node->translate(2 * ballTranslate * evt.timeSinceLastFrame);
+            _node->translate(10 * ballTranslate * evt.timeSinceLastFrame);
 
             //_node->_getWorldAABB().intersects();
 
